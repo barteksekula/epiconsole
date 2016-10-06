@@ -11,37 +11,46 @@ using System.IO;
 using System.Reflection;
 using System.Web.Hosting;
 using EPiServer.ServiceLocation;
+using Fclp;
 
 namespace ConsoleEPiServer
 {
-    internal interface IOperation
-    {
-        void Execute(IContentRepository contentRepository);
-    }
-
-    public class ImportPagesOperation : IOperation
-    {
-        public ImportPagesOperation(IContentRepository contentRepository)
-        {
-            
-        }
-    }
-
     class Program
     {
-//        [ImportMany]
-//        IEnumerable<IOperation> operations;
-
         static void Main(string[] args)
         {
+            var p = new FluentCommandLineParser();
+
+            string appPath = null;
+            var taskNames = new List<string>();
+            p.Setup<List<string>>('t', "tasks").Callback(items => taskNames = items).Required();
+            p.Setup<string>('p', "appPath").Callback(item => appPath = item).Required();
+            
+            var result = p.Parse(args);
+
+            if (result.HasErrors)
+            {
+                Console.Error.WriteLine(result.ErrorText);
+                Console.ReadKey();
+                return;
+            }
+
             InitializeHostingEnvironment();
             InitalizeEPiServer();
 
-            var typeName = "ImportPagesOperation";
+            var binFolder = Path.Combine(appPath, "bin");
+            foreach (var file in Directory.GetFiles(binFolder))
+            {
+                var assembly = Assembly.LoadFrom(file);
+                var assemblyName = AssemblyName.GetAssemblyName(file);
+                AppDomain.CurrentDomain.Load(assemblyName);
+            }
 
-            // custom task
-            var type = Type.GetType(typeName);
-            ServiceLocator.Current.GetInstance(type);
+            foreach (var taskName in taskNames)
+            {
+                var type = Type.GetType(taskName);
+                var task = ServiceLocator.Current.GetInstance(type);
+            }
 
             var rootPage =
                 DataFactory.Instance.Get<IContent>(ContentReference.RootPage);
@@ -49,6 +58,7 @@ namespace ConsoleEPiServer
             var contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 
             Console.Out.WriteLine(rootPage.Name);
+            Console.ReadKey();
         }
 
         private static void InitalizeEPiServer()
@@ -56,7 +66,7 @@ namespace ConsoleEPiServer
             ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap
             {
                 ExeConfigFilename =
-                    @"D:\Projects\alloy\alloy\web.config"
+                    @"D:\Projects\ConsoleEPiServer\alloy\alloy\web.config"
             };
             Configuration config =
                 ConfigurationManager.OpenMappedExeConfiguration(
@@ -66,7 +76,7 @@ namespace ConsoleEPiServer
                  config.GetSection("episerver.framework") as EPiServerFrameworkSection;
             section.VirtualPathProviders.Clear(); // use our own VPP
             var connection = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
-            connection.ConnectionString = connection.ConnectionString.Replace("|DataDirectory|", @"D:\Projects\alloy\alloy\App_Data\");
+            connection.ConnectionString = connection.ConnectionString.Replace("|DataDirectory|", @"D:\Projects\ConsoleEPiServer\alloy\alloy\App_Data\");
             section.AppData.BasePath = "/";
             ConfigurationSource.Instance = new FileConfigurationSource(config);
             InitializationModule.FrameworkInitialization(HostType.Service);
