@@ -56,3 +56,5 @@ D:\Projects\ConsoleEPiServer\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.pdb
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.pdb
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.xml
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\ShellProgressBar.dll
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\ShellProgressBar.pdb

@@ -6,26 +6,35 @@ using EPiServer.Web.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Web.Hosting;
 using EPiServer.ServiceLocation;
 using Fclp;
+using ShellProgressBar;
 
 namespace ConsoleEPiServer
 {
     class Program
     {
+        public static ProgressBar pbar;
+
         static void Main(string[] args)
         {
+            pbar = new ProgressBar(100, "Starting", ConsoleColor.Cyan);
+            pbar.UpdateMessage("Initializing AppDomain...");
             var p = new FluentCommandLineParser();
 
             string appPath = null;
             var taskNames = new List<string>();
+            string taskAssembly = null;
             p.Setup<List<string>>('t', "tasks").Callback(items => taskNames = items).Required();
             p.Setup<string>('p', "appPath").Callback(item => appPath = item).Required();
-            
+            p.Setup<string>('a', "assembly").Callback(item => taskAssembly = item).Required();
+
             var result = p.Parse(args);
 
             if (result.HasErrors)
@@ -33,32 +42,56 @@ namespace ConsoleEPiServer
                 Console.Error.WriteLine(result.ErrorText);
                 Console.ReadKey();
                 return;
-            }
+            }                    
 
             InitializeHostingEnvironment();
             InitalizeEPiServer();
 
-            var binFolder = Path.Combine(appPath, "bin");
-            foreach (var file in Directory.GetFiles(binFolder))
+            var types = new List<Type>();
+            var binFolder = Path.Combine(appPath, @"bin\Debug");
+            foreach (var file in Directory.GetFiles(binFolder, taskAssembly))
             {
                 var assembly = Assembly.LoadFrom(file);
                 var assemblyName = AssemblyName.GetAssemblyName(file);
                 AppDomain.CurrentDomain.Load(assemblyName);
-            }
 
-            foreach (var taskName in taskNames)
-            {
-                var type = Type.GetType(taskName);
+                var foundTasks = assembly.ExportedTypes.Where(t => taskNames.Contains(t.Name));
+                types.AddRange(foundTasks);
+            }            
+
+            foreach (var type in types)
+            {                                
                 var task = ServiceLocator.Current.GetInstance(type);
+                var method = type.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance);
+
+                var eventProgress = type.GetEvent("Progress");
+                var showProgressMethod = typeof(Program).GetMethod("ShowProgress", BindingFlags.Static | BindingFlags.Public);
+                Type tDelegate = eventProgress.EventHandlerType;
+                Delegate handler = Delegate.CreateDelegate(tDelegate, null, showProgressMethod);
+                eventProgress.AddEventHandler(task, handler);
+                
+                method.Invoke(task, null);
             }
-
+            
             var rootPage =
-                DataFactory.Instance.Get<IContent>(ContentReference.RootPage);
-
-            var contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
+                DataFactory.Instance.Get<IContent>(ContentReference.RootPage);            
 
             Console.Out.WriteLine(rootPage.Name);
             Console.ReadKey();
+            pbar.Dispose();
+        }
+
+        public static int? tick;
+
+        public static void ShowProgress(object sender, ProgressChangedEventArgs eventArgs)
+        {
+            if (!tick.HasValue)
+            {
+                tick = (int) (100/(eventArgs.ProgressPercentage));
+                pbar.UpdateMaxTicks(tick.Value);
+            }            
+            
+            pbar.Tick("Currently processing " + eventArgs.ProgressPercentage);            
         }
 
         private static void InitalizeEPiServer()
