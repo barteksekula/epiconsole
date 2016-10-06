@@ -53,7 +53,6 @@ D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\System.Web.WebPages.Depl
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\System.Web.WebPages.Razor.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.exe
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.pdb
-D:\Projects\epi-console\epiconsole\ConsoleEPiServer\bin\Debug\ConsoleEPiServer.exe.config
-D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.exe
-D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.pdb
-D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.csprojResolveAssemblyReference.cache
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.dll
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.pdb
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\FluentCommandLineParser.xml
