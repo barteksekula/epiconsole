@@ -161,8 +161,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLineParams.cs" />
+    <Compile Include="NoneWebContextHostingEnvironment.cs" />
+    <Compile Include="TaskRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TasksLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
