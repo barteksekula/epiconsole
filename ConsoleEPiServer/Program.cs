@@ -9,7 +9,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using EPiServer.ServiceLocation;
+using EPiServer.Web;
 using ShellProgressBar;
+using InitializationModule = EPiServer.Framework.Initialization.InitializationModule;
 
 namespace ConsoleEPiServer
 {
@@ -27,7 +29,21 @@ namespace ConsoleEPiServer
             }
 
             InitializeHostingEnvironment();
-            InitalizeEPiServer();
+            Console.WriteLine("Initializing EPiServer environment");
+
+            var fileMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = Path.Combine(commandLineParams.AppPath, "web.config")
+            };
+            var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+            var section = config.GetSection("episerver.framework") as EPiServerFrameworkSection;
+            section.VirtualPathProviders.Clear(); // use our own VPP
+            var connection = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
+            connection.ConnectionString = connection.ConnectionString.Replace("|DataDirectory|",
+                Path.Combine(commandLineParams.AppPath, "App_Data") + "\\");
+            section.AppData.BasePath = "/";
+            ConfigurationSource.Instance = new FileConfigurationSource(config);
+            InitializationModule.FrameworkInitialization(HostType.Service);
 
             var assembly = Assembly.LoadFrom(commandLineParams.TaskAssembly);
             var assemblyName = AssemblyName.GetAssemblyName(commandLineParams.TaskAssembly);
@@ -55,25 +71,6 @@ namespace ConsoleEPiServer
 
             Console.WriteLine("Tasks completed");
             Console.ReadKey();
-        }
-
-        private static void InitalizeEPiServer()
-        {
-            Console.WriteLine("Initializing EPiServer environment");
-
-            var fileMap = new ExeConfigurationFileMap
-            {
-                ExeConfigFilename =
-                    @"D:\Projects\epi-console\epiconsole\alloy\alloy\web.config"
-            };
-            var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-            var section = config.GetSection("episerver.framework") as EPiServerFrameworkSection;
-            section.VirtualPathProviders.Clear(); // use our own VPP
-            var connection = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
-            connection.ConnectionString = connection.ConnectionString.Replace("|DataDirectory|", @"D:\Projects\epi-console\epiconsole\alloy\alloy\App_Data\");
-            section.AppData.BasePath = "/";
-            ConfigurationSource.Instance = new FileConfigurationSource(config);
-            InitializationModule.FrameworkInitialization(HostType.Service);
         }
 
         private static void InitializeHostingEnvironment()
