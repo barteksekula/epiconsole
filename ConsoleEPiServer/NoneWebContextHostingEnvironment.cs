@@ -8,20 +8,19 @@ namespace ConsoleEPiServer
 {
     internal class NoneWebContextHostingEnvironment : IHostingEnvironment
     {
-        private VirtualPathProvider provider = null;
-
         public string MapPath(string virtualPath)
         {
             return Path.Combine(
                 Environment.CurrentDirectory,
-                virtualPath.Trim(new char[] { ' ', '~', '/' }).Replace('/', '\\'));
+                virtualPath.Trim(' ', '~', '/').Replace('/', '\\'));
         }
 
         public void RegisterVirtualPathProvider(VirtualPathProvider virtualPathProvider)
         {
-            var fieldInfo = typeof(VirtualPathProvider).GetField("_previous", BindingFlags.NonPublic | BindingFlags.Instance);
-            fieldInfo.SetValue(virtualPathProvider, provider);
-            provider = virtualPathProvider;
+            var fieldInfo = typeof(VirtualPathProvider).GetField("_previous",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            fieldInfo.SetValue(virtualPathProvider, null);
+            VirtualPathProvider = virtualPathProvider;
         }
 
         public string ApplicationID { get; set; }
@@ -30,6 +29,6 @@ namespace ConsoleEPiServer
 
         public string ApplicationVirtualPath { get; set; }
 
-        public System.Web.Hosting.VirtualPathProvider VirtualPathProvider => provider;
+        public VirtualPathProvider VirtualPathProvider { get; private set; }
     }
 }

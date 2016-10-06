@@ -162,6 +162,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineParams.cs" />
+    <Compile Include="EpiTask.cs" />
+    <Compile Include="HostingEnvironmentMutator.cs" />
     <Compile Include="NoneWebContextHostingEnvironment.cs" />
     <Compile Include="TaskRunner.cs" />
     <Compile Include="Program.cs" />

@@ -1,15 +1,12 @@
 ﻿using EPiServer.Framework.Configuration;
 using EPiServer.Framework.Initialization;
-using EPiServer.Web.Hosting;
 using System;
-using System.Collections.Specialized;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using EPiServer.ServiceLocation;
-using EPiServer.Web;
 using ShellProgressBar;
 using InitializationModule = EPiServer.Framework.Initialization.InitializationModule;
 
@@ -28,7 +25,7 @@ namespace ConsoleEPiServer
                 return;
             }
 
-            InitializeHostingEnvironment();
+            HostingEnvironmentMutator.Mutate(AppDomain.CurrentDomain);
             Console.WriteLine("Initializing EPiServer environment");
 
             var fileMap = new ExeConfigurationFileMap
@@ -38,9 +35,15 @@ namespace ConsoleEPiServer
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             var section = config.GetSection("episerver.framework") as EPiServerFrameworkSection;
             section.VirtualPathProviders.Clear(); // use our own VPP
-            var connection = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
-            connection.ConnectionString = connection.ConnectionString.Replace("|DataDirectory|",
-                Path.Combine(commandLineParams.AppPath, "App_Data") + "\\");
+            var connectionString = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
+            var builder = new SqlConnectionStringBuilder(connectionString.ConnectionString);
+
+            if (!string.IsNullOrWhiteSpace(builder.AttachDBFilename))
+            {
+                builder.AttachDBFilename = builder.AttachDBFilename.Replace("|DataDirectory|",
+                    Path.Combine(commandLineParams.AppPath, "App_Data") + "\\");
+            }
+            connectionString.ConnectionString = builder.ConnectionString;
             section.AppData.BasePath = "/";
             ConfigurationSource.Instance = new FileConfigurationSource(config);
             InitializationModule.FrameworkInitialization(HostType.Service);
@@ -50,48 +53,34 @@ namespace ConsoleEPiServer
             AppDomain.CurrentDomain.Load(assemblyName);
 
             var tasksLoader = new TasksLoader(ServiceLocator.Current);
-            var epiTasks = tasksLoader.Load(assembly, commandLineParams.TaskTypes);
-
-            Console.WriteLine("Executing tasks");
-            foreach (var type in epiTasks)
+            try
             {
-                var watch = Stopwatch.StartNew();
-                Console.WriteLine(" - " + type.Type.Name);
-                Console.WriteLine();
-
-                using (var pbar = new ProgressBar(100, "", ConsoleColor.Cyan))
+                var epiTasks = tasksLoader.Load(assembly, commandLineParams.TaskTypes);
+                Console.WriteLine("Executing tasks");
+                foreach (var type in epiTasks)
                 {
-                    var taskRunner = new TaskRunner(pbar);
-                    taskRunner.Run(type);
-
+                    var watch = Stopwatch.StartNew();
+                    Console.WriteLine(" - " + type.Type.Name);
                     Console.WriteLine();
-                    Console.WriteLine("  total time: " + watch.Elapsed);
+
+                    using (var pbar = new ProgressBar(100, ""))
+                    {
+                        var taskRunner = new TaskRunner(pbar);
+                        taskRunner.Run(type);
+
+                        Console.WriteLine();
+                        Console.WriteLine("  total time: " + watch.Elapsed);
+                    }
                 }
+
+                Console.WriteLine("Tasks completed");
+                Console.ReadKey();
             }
-
-            Console.WriteLine("Tasks completed");
-            Console.ReadKey();
-        }
-
-        private static void InitializeHostingEnvironment()
-        {
-            Console.WriteLine("Initializing host environment");
-
-            var applicationPhysicalPath = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile).Directory.FullName;
-            var environment =
-                new NoneWebContextHostingEnvironment
-                {
-                    ApplicationVirtualPath = "/",
-                    ApplicationPhysicalPath = applicationPhysicalPath
-                };
-            GenericHostingEnvironment.Instance = environment;
-            var configParameters = new NameValueCollection
+            catch (Exception ex)
             {
-                {"physicalPath", AppDomain.CurrentDomain.BaseDirectory},
-                {"virtualPath", "~/"}
-            };
-            var virtualPathProvider = new VirtualPathNonUnifiedProvider("fallbackMapPathVPP", configParameters);
-            environment.RegisterVirtualPathProvider(virtualPathProvider);
+                Console.Error.WriteLine(ex.Message);
+                Console.ReadKey();
+            }
         }
     }
 }

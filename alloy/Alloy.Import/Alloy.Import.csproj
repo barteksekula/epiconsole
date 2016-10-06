@@ -148,6 +148,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dupa.cs" />
     <Compile Include="ImportContentFromOldSolution.cs" />
     <Compile Include="InitializeContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
