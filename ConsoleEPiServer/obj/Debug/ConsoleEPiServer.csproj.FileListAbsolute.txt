@@ -56,3 +56,4 @@ D:\Projects\ConsoleEPiServer\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.pdb
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\bin\Debug\ConsoleEPiServer.exe.config
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.exe
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.pdb
+D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.csprojResolveAssemblyReference.cache

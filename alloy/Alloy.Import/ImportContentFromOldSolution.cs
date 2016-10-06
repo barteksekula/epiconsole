@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
 using alloy.Models.Pages;
 using EPiServer;
 using EPiServer.Core;
@@ -12,7 +13,7 @@ namespace Alloy.Import
     {
         private readonly IContentRepository _contentRepository;
 
-        public EventHandler<ProgressChangedEventArgs> Progress;
+        public event EventHandler<ProgressChangedEventArgs> Progress;
 
         public ImportContentFromOldSolution(IContentRepository contentRepository)
         {
@@ -25,6 +26,8 @@ namespace Alloy.Import
 
             for (int i = 1; i < 5; i++)
             {
+                Thread.Sleep(1500);
+
                 var articlePage = _contentRepository.GetDefault<ArticlePage>(rootReference);
                 articlePage.Name = "Test page " + i;
                 _contentRepository.Save(articlePage, SaveAction.CheckIn, AccessLevel.Publish);
