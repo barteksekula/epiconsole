@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImportContentFromOldSolution.cs" />
+    <Compile Include="InitializeContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\alloy\alloy.csproj">

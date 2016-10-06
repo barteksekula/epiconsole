@@ -4,8 +4,6 @@ using System.Threading;
 using alloy.Models.Pages;
 using EPiServer;
 using EPiServer.Core;
-using EPiServer.DataAccess;
-using EPiServer.Security;
 
 namespace Alloy.Import
 {
@@ -28,11 +26,11 @@ namespace Alloy.Import
 
             for (int i = 1; i < totalPages; i++)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(400);
 
                 var articlePage = _contentRepository.GetDefault<ArticlePage>(rootReference);
                 articlePage.Name = "Test page " + i;
-                _contentRepository.Save(articlePage, SaveAction.Publish, AccessLevel.NoAccess);
+                //_contentRepository.Save(articlePage, SaveAction.Publish, AccessLevel.NoAccess);
                 Progress?.Invoke(this, new ProgressChangedEventArgs((100 * i)/ totalPages, null));
             }
             Progress?.Invoke(this, new ProgressChangedEventArgs(100, null));
