@@ -24,18 +24,18 @@ namespace Alloy.Import
         {
             var rootReference = new ContentReference(48);
 
-            for (int i = 1; i < 5; i++)
+            var totalPages = 20;
+
+            for (int i = 1; i < totalPages; i++)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(1000);
 
                 var articlePage = _contentRepository.GetDefault<ArticlePage>(rootReference);
                 articlePage.Name = "Test page " + i;
                 _contentRepository.Save(articlePage, SaveAction.Publish, AccessLevel.NoAccess);
-                if (Progress != null)
-                {
-                    Progress(this, new ProgressChangedEventArgs(100 / i, null));
-                }
+                Progress?.Invoke(this, new ProgressChangedEventArgs(100 / (totalPages - i - 1), null));
             }
+            Progress?.Invoke(this, new ProgressChangedEventArgs(100, null));
         }
     }
 
