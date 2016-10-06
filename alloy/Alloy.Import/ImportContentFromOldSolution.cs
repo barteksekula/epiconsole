@@ -33,15 +33,9 @@ namespace Alloy.Import
                 var articlePage = _contentRepository.GetDefault<ArticlePage>(rootReference);
                 articlePage.Name = "Test page " + i;
                 _contentRepository.Save(articlePage, SaveAction.Publish, AccessLevel.NoAccess);
-                Progress?.Invoke(this, new ProgressChangedEventArgs(100 / (totalPages - i - 1), null));
+                Progress?.Invoke(this, new ProgressChangedEventArgs((100 * i)/ totalPages, null));
             }
             Progress?.Invoke(this, new ProgressChangedEventArgs(100, null));
         }
-    }
-
-    public class NotifyEventArgs: EventArgs
-    {
-        public int Current { get; set; }
-        public int Total { get; set; }
     }
 }
