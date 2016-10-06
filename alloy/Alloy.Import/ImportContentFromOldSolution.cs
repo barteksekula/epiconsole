@@ -30,7 +30,7 @@ namespace Alloy.Import
 
                 var articlePage = _contentRepository.GetDefault<ArticlePage>(rootReference);
                 articlePage.Name = "Test page " + i;
-                _contentRepository.Save(articlePage, SaveAction.CheckIn, AccessLevel.Publish);
+                _contentRepository.Save(articlePage, SaveAction.Publish, AccessLevel.NoAccess);
                 if (Progress != null)
                 {
                     Progress(this, new ProgressChangedEventArgs(100 / i, null));
