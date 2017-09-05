@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using EPiServer.ServiceLocation;
 using ShellProgressBar;
@@ -34,7 +35,7 @@ namespace ConsoleEPiServer
             };
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             var section = config.GetSection("episerver.framework") as EPiServerFrameworkSection;
-            section.VirtualPathProviders.Clear(); // use our own VPP
+            section.VirtualPathProviders.Clear();
             var connectionString = config.ConnectionStrings.ConnectionStrings["EPiServerDB"];
             var builder = new SqlConnectionStringBuilder(connectionString.ConnectionString);
 
@@ -73,8 +74,7 @@ namespace ConsoleEPiServer
                     }
                 }
 
-                Console.WriteLine("Tasks completed");
-                Console.ReadKey();
+                Console.WriteLine("Tasks completed");                
             }
             catch (Exception ex)
             {

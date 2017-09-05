@@ -153,11 +153,6 @@
             </summary>
       <exclude />
     </member>
-    <member name="P:EPiServer.Configuration.EPiServerSection.Sites">
-      <summary>
-            reference collection
-            </summary>
-    </member>
     <member name="P:EPiServer.Configuration.EPiServerSection.ApplicationSettings">
       <summary>
             Gets the application settings.
@@ -248,6 +243,168 @@
       <returns>
       </returns>
     </member>
+    <member name="T:EPiServer.Configuration.ImageEditor.ImageEditorElement">
+      <summary>
+            Base configuration element for the EPiServer Image Editor.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.Enabled">
+      <summary>
+            Gets a value indicating whether the image editor is enabled in configuration.
+            </summary>
+      <value>
+        <c>true</c> if the image editor is enabled; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.WindowWidth">
+      <summary>
+            Gets the preferred width of the image editor from configuration.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.WindowHeight">
+      <summary>
+            Gets the preferred height of the image editor from configuration.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.ZoomImageToFitInWindow">
+      <summary>
+            Determines if the zoom level of the image should be calculated so the whole image is visible when opening images.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.ModifiedImagesTargetVirtualPath">
+      <summary>
+            Returns the virtual path to a location where images modified in the editor are saved.
+            If this property is not set the Page folder for the active page is used.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.SizePresets">
+      <summary>
+            Gets the configured presets used for crop rectangle or resize operations.
+            </summary>
+      <value>A collection of size presets.</value>
+    </member>
+    <member name="T:EPiServer.Configuration.ImageEditor.PresetElement">
+      <summary>
+            Size preset information for the EPiServer Image Editor
+            </summary>
+    </member>
+    <member name="M:EPiServer.Configuration.ImageEditor.PresetElement.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:EPiServer.Configuration.ImageEditor.PresetElement" /> class.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Width">
+      <summary>
+            Gets the preset width in pixels.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Height">
+      <summary>
+            Gets the preset height in pixels.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.LanguageKey">
+      <summary>
+            Gets a language key to a localized description of the preset.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Name">
+      <summary>
+            Gets a name of the preset to show in the preset list.
+            </summary>
+    </member>
+    <member name="T:EPiServer.Configuration.ImageEditor.PresetElementCollection">
+      <summary>
+            Represents a collection of resizing/cropping size presets for the EPiServer Image Editor
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.ImageEditor.PresetElementCollection.ElementName">
+      <summary>
+            Gets the name used to identify this collection of elements in the configuration file.
+            </summary>
+      <returns>The name of the collection.</returns>
+    </member>
+    <member name="T:EPiServer.Configuration.LinkValidator.ExcludePattern">
+      <summary>
+            A pattern that will be ignored by the link validator.
+            </summary>
+    </member>
+    <member name="M:EPiServer.Configuration.LinkValidator.ExcludePattern.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:EPiServer.Configuration.LinkValidator.ExcludePattern" /> class.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.ExcludePattern.RegexString">
+      <summary>
+            A string used to create regex to identify links that should be ignored.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.ExcludePattern.Regex">
+      <summary>
+            A regex used to identify links that should be ignored.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.ExcludePatternCollection.ElementName">
+      <summary>
+            Gets the name used to identify this collection of elements in the configuration file.
+            </summary>
+      <returns>The name of the collection.</returns>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExternalLinkErrorThreshold">
+      <summary>
+            If a consecutive number of errors on external links exceeds the threshold, the job will stop.
+            </summary>
+      <value>The threshold where the job will stop.</value>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.MaximumRunTime">
+      <summary>
+            The maximum time the job will run at one time.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.RecheckInterval">
+      <summary>
+            The time that must elaps before a link is rechecked.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.UserAgent">
+      <summary>
+            The user agent string to use when checking validity of links.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyAddress">
+      <summary>
+            Optional web proxy address for the link checker to use when validating links.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyUser">
+      <summary>
+            Optional web proxy user for to authenticate proxy connection.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyPassword">
+      <summary>
+            Optional web proxy password to authenticate the proxy connection.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyDomain">
+      <summary>
+            Optional web proxy domain to authenticate the proxy connection.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExcludePatterns">
+      <summary>
+            A list of patterns that for links that will be ignored by the link validator
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.InternalLinkValidation">
+      <summary>
+            How the link validator will validate internal links.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExternalLinkMinimumRequestInterval">
+      <summary>
+            The minimum time between requests to the same external host.
+            </summary>
+    </member>
     <member name="M:EPiServer.Configuration.MailAddressValidator.CanValidate(System.Type)">
       <summary>
             Checks if this Validator is compliant with the property type.
@@ -315,15 +472,27 @@
       <returns>MailAdress</returns>
       <remarks>Supports only conversion from string</remarks>
     </member>
-    <member name="T:EPiServer.Configuration.PageProvider">
+    <member name="T:EPiServer.Configuration.Personalization.SearchKeyWordCriterionElement">
       <summary>
-            PageProvider is an element in site which defines page providers. 
+            Configuration element for search key word criterion
             </summary>
     </member>
-    <member name="M:EPiServer.Configuration.PageProvider.#ctor">
+    <member name="P:EPiServer.Configuration.Personalization.SearchKeyWordCriterionElement.Pattern">
       <summary>
-            Initializes a new instance of the <see cref="T:EPiServer.Configuration.PageProvider" /> class.
+            Gets or sets the regular expression pattern for finding search words in referrer url.
             </summary>
+      <value>The pattern.</value>
+    </member>
+    <member name="T:EPiServer.Configuration.Personalization.VisitorGroupElement">
+      <summary>
+            Configuration element for visitor groups
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.Personalization.VisitorGroupElement.SearchKeyWordCriteria">
+      <summary>
+            Gets or sets settings for the search key word criteria.
+            </summary>
+      <value>The search key word criteria.</value>
     </member>
     <member name="T:EPiServer.Configuration.Settings">
       <summary>
@@ -374,6 +543,17 @@
       <returns>
       </returns>
     </member>
+    <member name="M:EPiServer.Configuration.Settings.InitializeAllSettings(System.Configuration.Configuration)">
+      <summary>
+            Sets up all static variables of the Settings class based on System.Configuration.Configuration object passed as a parameter.
+            </summary>
+      <param name="config">The System.Configuration.Configuration object that contains the EPiServer settings.</param>
+      <returns>
+      </returns>
+      <exception cref="T:System.Configuration.ConfigurationErrorsException">
+            If there is an enterprise solution and the siteHosts section is missing with the value "*". 
+            </exception>
+    </member>
     <member name="M:EPiServer.Configuration.Settings.CopyValues(EPiServer.Configuration.Settings,EPiServer.Configuration.Settings)">
       <summary>
             Copies all values from one Settings instance to another instance.iisreset.
@@ -386,70 +566,12 @@
             Get the current configuration settings.
             </summary>
     </member>
-    <member name="P:EPiServer.Configuration.Settings.All">
-      <summary>
-            Gets an <see cref="T:System.Collections.Generic.IDictionary{TKey, TValue}" /> containing all Settings instances
-            in the application's configuration file. The Dictionary uses the site tags' applicationId attribute as keys.
-            </summary>
-    </member>
-    <member name="M:EPiServer.Configuration.Settings.MapHostToSettings(System.String,System.Boolean)">
-      <summary>
-            Maps a host name to a <see cref="T:EPiServer.Configuration.Settings" /> instance.
-            </summary>
-      <param name="hostName">The host name.</param>
-      <param name="fallback">Specifies whether to use a fallback settings instance or not.</param>
-      <returns>A Settings instance with configuration information to handle this request.</returns>
-      <remarks>
-            This is used for enterprise solutions where you have multiple &lt;settings&gt; sections in the
-            same web.config file.
-            </remarks>
-    </member>
-    <member name="M:EPiServer.Configuration.Settings.MapUrlToSettings(System.Uri)">
-      <summary>
-            Maps URL to a <see cref="T:EPiServer.Configuration.Settings" /> instance.
-            </summary>
-      <param name="url">The URL.</param>
-      <returns>
-      </returns>
-      <remarks>
-            This is used for enterprise solutions where you have multiple &lt;settings&gt; sections in the
-            same web.config file. If the host name that is safe to use for DNS resolution does <b><i>not</i></b> exist, 
-            then it maps to fallback host which is indicates with "*".
-            </remarks>
-      <exception cref="T:System.ArgumentNullException">
-            Thrown ArgumentNullException if the URI is null.
-            </exception>
-      <exception cref="T:System.ArgumentException">
-            Thrown ArgumentException if the URI is <b><i>not</i></b> absolute.
-            </exception>
-      <exception cref="T:System.Configuration.ConfigurationErrorsException">
-            If the URI absolute path is <b><i>not</i></b> equal with the site settings absolute path.
-            Hits when the URI has a path that is outside of the application root.
-            </exception>
-    </member>
     <member name="M:EPiServer.Configuration.Settings.InitializeAllSettings">
       <summary>
             Sets up all static variables of the Settings class based on the web.config file in the applications root directory.
             </summary>
       <returns>
       </returns>
-    </member>
-    <member name="M:EPiServer.Configuration.Settings.InitializeAllSettings(System.Configuration.Configuration)">
-      <summary>
-            Sets up all static variables of the Settings class based on System.Configuration.Configuration object passed as a parameter.
-            </summary>
-      <param name="config">The System.Configuration.Configuration object that contains the EPiServer settings.</param>
-      <returns>
-      </returns>
-      <exception cref="T:System.Configuration.ConfigurationErrorsException">
-            If there is an enterprise solution and the siteHosts section is missing with the value "*". 
-            </exception>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.Parent">
-      <summary>
-            Gets or sets the parent.
-            </summary>
-      <value>The parent.</value>
     </member>
     <member name="P:EPiServer.Configuration.Settings.BackgroundCopyThreshold">
       <summary>
@@ -509,11 +631,6 @@
             Defines whether SgmlParser should decode character entities (like " ") or not.
             </summary>
     </member>
-    <member name="P:EPiServer.Configuration.Settings.EnableXmlRpcHeader">
-      <summary>
-            Defines whether xmlrpc headers should be added to page output. 
-            </summary>
-    </member>
     <member name="P:EPiServer.Configuration.Settings.DisableVersionDeletion">
       <summary>
             Defines if the user interface should disable tools to increase traceability.
@@ -522,6 +639,13 @@
     <member name="P:EPiServer.Configuration.Settings.EnablePerformanceCounters">
       <summary>
             Defines if performance counter data should be collected.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.Settings.ActivityArchiveRetentionPeriod">
+      <summary>
+            Set to the number of months that activities should remain archived before they are deleted. 
+            A value of zero (0) indicates that activities should be deleted immediately. 
+            A value of -1 indicates that activities should remain indefinitely.
             </summary>
     </member>
     <member name="P:EPiServer.Configuration.Settings.HttpCacheVaryByCustom">
@@ -759,7 +883,6 @@
     </member>
     <member name="P:EPiServer.Configuration.Settings.MonitoredTaskTruncateLimit">
       <summary>
-            NOTE: This is a pre-release API that is UNSTABLE and might not satisfy the compatibility requirements as denoted by its associated normal version.
             The amount of time before a monitored task will be removed.
             </summary>
     </member>
@@ -770,183 +893,6 @@
       <remarks>
             This member supports the EPiServer infrastructure and is not intended to be used directly from your code.
             </remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.IndexingDelayAfterPublish">
-      <summary>
-            Delay time between publish and indexing.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.IndexingTextEnabled">
-      <summary>
-            If indexing of text into keywords should be enabled.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.UIDefaultPanelTab">
-      <summary>
-            The index of the EditPanel tab that is to be shown by default when clicking a page in the edit mode page tree.
-            </summary>
-      <remarks>
-            The value of this property is used as an zero-based index in an array of EditPanel tabs.
-            For example, all pages in a default installation of the example will have the following tabs:
-            
-            Tab name        Index
-            View            0
-            Edit            1
-            Version list    2
-            </remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.IndexingTextRegExp">
-      <summary>
-            The regular expression to index words in pages.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.UIImageTransparencyReplacement">
-      <summary>
-            The color that should replace the transparent color in a picture compression.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.RemoteCacheListenerShortNames">
-      <summary>
-            A list of remote sites that will recieve notifications when a change is made
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.UIEditorColors">
-      <summary>
-            Defines what colors should be available for the editors
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.UIEditorUnformattingPersistedTags">
-      <summary>
-            Controls which html tags that should not be preserved in "Remove format" action in editor.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.GlobalErrorMail">
-      <summary>
-            E-mail address that error messages should be sent to
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.RootPageResolver">
-      <summary>
-            Gets or sets the root page resolver.
-            </summary>
-      <value>
-            The root page resolver.
-            </value>
-      <remarks>This should not be used it is used to keep backward compability for <see cref="P:EPiServer.Configuration.Settings.PageRootId" />.</remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.PageRootId">
-      <summary>
-            ID of the root folder
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.StartPageResolver">
-      <summary>
-            Gets or sets the start page resolver.
-            </summary>
-      <value>
-            The start page resolver.
-            </value>
-      <remarks>This should not be used it is used to keep backward compability for <see cref="P:EPiServer.Configuration.Settings.PageStartId" />.</remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.PageStartId">
-      <summary>
-            ID of the Web page that serves as the start page for the site.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.PageWastebasketId">
-      <summary>
-            ID of the Recycle Bin.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.PageOfficeStartId">
-      <summary>
-            Defines from where the Office plug-in should display the site tree
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.SiteUrlResolver">
-      <summary>
-            Gets or sets the SiteUrl resolver.
-            </summary>
-      <value>
-            The SiteUrl resolver.
-            </value>
-      <remarks>This should not be used it is used to keep backward compability for <see cref="P:EPiServer.Configuration.Settings.SiteUrl" />.</remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.SiteUrl">
-      <summary>
-            Gets or sets the site URL. It must be a Web URL, and include the path to the site root. It is only to be used
-            to generate direct references to the site in external locations. For references from a page, use root-relative
-            URLs and ResolveUrl etc as appropriate.
-            </summary>
-      <value>The site URL. Guaranteed to end with a '/'.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.SiteDisplayName">
-      <summary>
-            The name of the site. RegExp Pattern for validation: "^([\x20\w0-9\.-]{0,256})$".
-            </summary>
-      <value>The display name of the site.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.ConnectionStringName">
-      <summary>
-            Gets or sets the name of the connection string.
-            </summary>
-      <value>The name of the connection string.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.ErrorMailHandler">
-      <summary>
-            Gets or sets the error mail handler.
-            </summary>
-      <value>The error mail handler.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.AutoSaveInterval">
-      <summary>
-            Gets or sets the auto save interval. If the value is less than 10 seconds, the auto save feature will be turned off.
-            </summary>
-      <value>The auto save interval.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.UseLegacyEditMode">
-      <summary>
-            Gets or sets the useLegacyEditMode for determining which edit mode is set to run
-            </summary>
-      <value>The value of useLegacyEditMode key.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.DeadlockRetries">
-      <summary>
-            Gets or sets the number of retry attempts when a database deadlock occurs.
-            </summary>
-      <value>The number of retries retries.</value>
-      <remarks>
-            Deadlocks will usually not occur, but during special circumstances you may experience deadlocks. This could for example happen if pages are
-            created and published very frequently (&gt;10 pages per second).
-            </remarks>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.DeadlockRetryDelay">
-      <summary>
-            Gets or sets the deadlock retry delay.
-            </summary>
-      <value>The data access retry delay.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.DraftRetainPeriod">
-      <summary>
-            Gets or sets the retain period for the draft created by the autosave functionality.
-            </summary>
-      <value>The draft retain period.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.DatabaseQueryTimeout">
-      <summary>
-            Gets or sets the database query timeout.
-            </summary>
-      <value>The timeout value.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.GlobalBlockFolderId">
-      <summary>
-            ID of the global block folder that is shared between sites.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Settings.SiteBlockFolderId">
-      <summary>
-            ID of the site block folder that holds site specific blocks.
-            </summary>
     </member>
     <member name="T:EPiServer.Configuration.EPiServerCompatibility">
       <summary>
@@ -1011,6 +957,11 @@
       <summary>
             Class for returning an instance of the Validator implementation
             around Uri properties.
+            </summary>
+    </member>
+    <member name="P:EPiServer.Configuration.TinyMCE.TinyMCEElement.MergedConfigurationProperties">
+      <summary>
+            Properties that will be mergable for plugins in tiny mce
             </summary>
     </member>
     <member name="M:EPiServer.Configuration.UriValidator.CanValidate(System.Type)">
@@ -1098,189 +1049,6 @@
       <summary>
             Class for returning an instance of the Validator implementation
             around Uri properties.
-            </summary>
-    </member>
-    <member name="T:EPiServer.Configuration.ImageEditor.ImageEditorElement">
-      <summary>
-            Base configuration element for the EPiServer Image Editor.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.Enabled">
-      <summary>
-            Gets a value indicating whether the image editor is enabled in configuration.
-            </summary>
-      <value>
-        <c>true</c> if the image editor is enabled; otherwise, <c>false</c>.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.WindowWidth">
-      <summary>
-            Gets the preferred width of the image editor from configuration.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.WindowHeight">
-      <summary>
-            Gets the preferred height of the image editor from configuration.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.ZoomImageToFitInWindow">
-      <summary>
-            Determines if the zoom level of the image should be calculated so the whole image is visible when opening images.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.ModifiedImagesTargetVirtualPath">
-      <summary>
-            Returns the virtual path to a location where images modified in the editor are saved.
-            If this property is not set the Page folder for the active page is used.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.ImageEditorElement.SizePresets">
-      <summary>
-            Gets the configured presets used for crop rectangle or resize operations.
-            </summary>
-      <value>A collection of size presets.</value>
-    </member>
-    <member name="T:EPiServer.Configuration.ImageEditor.PresetElement">
-      <summary>
-            Size preset information for the EPiServer Image Editor
-            </summary>
-    </member>
-    <member name="M:EPiServer.Configuration.ImageEditor.PresetElement.#ctor">
-      <summary>
-            Initializes a new instance of the <see cref="T:EPiServer.Configuration.ImageEditor.PresetElement" /> class.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Width">
-      <summary>
-            Gets the preset width in pixels.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Height">
-      <summary>
-            Gets the preset height in pixels.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.LanguageKey">
-      <summary>
-            Gets a language key to a localized description of the preset.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.PresetElement.Name">
-      <summary>
-            Gets a name of the preset to show in the preset list.
-            </summary>
-    </member>
-    <member name="T:EPiServer.Configuration.ImageEditor.PresetElementCollection">
-      <summary>
-            Represents a collection of resizing/cropping size presets for the EPiServer Image Editor
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.ImageEditor.PresetElementCollection.ElementName">
-      <summary>
-            Gets the name used to identify this collection of elements in the configuration file.
-            </summary>
-      <returns>The name of the collection.</returns>
-    </member>
-    <member name="T:EPiServer.Configuration.LinkValidator.ExcludePattern">
-      <summary>
-            A pattern that will be ignored by the link validator.
-            </summary>
-    </member>
-    <member name="M:EPiServer.Configuration.LinkValidator.ExcludePattern.#ctor">
-      <summary>
-            Initializes a new instance of the <see cref="T:EPiServer.Configuration.LinkValidator.ExcludePattern" /> class.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.ExcludePattern.RegexString">
-      <summary>
-            A string used to create regex to identify links that should be ignored.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.ExcludePattern.Regex">
-      <summary>
-            A regex used to identify links that should be ignored.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExternalLinkErrorThreshold">
-      <summary>
-            If a consecutive number of errors on external links exceeds the threshold, the job will stop.
-            </summary>
-      <value>The threshold where the job will stop.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.MaximumRunTime">
-      <summary>
-            The maximum time the job will run at one time.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.RecheckInterval">
-      <summary>
-            The time that must elaps before a link is rechecked.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.UserAgent">
-      <summary>
-            The user agent string to use when checking validity of links.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyAddress">
-      <summary>
-            Optional web proxy address for the link checker to use when validating links.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyUser">
-      <summary>
-            Optional web proxy user for to authenticate proxy connection.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyPassword">
-      <summary>
-            Optional web proxy password to authenticate the proxy connection.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ProxyDomain">
-      <summary>
-            Optional web proxy domain to authenticate the proxy connection.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExcludePatterns">
-      <summary>
-            A list of patterns that for links that will be ignored by the link validator
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.InternalLinkValidation">
-      <summary>
-            How the link validator will validate internal links.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.LinkValidator.LinkValidatorElement.ExternalLinkMinimumRequestInterval">
-      <summary>
-            The minimum time between requests to the same external host.
-            </summary>
-    </member>
-    <member name="T:EPiServer.Configuration.Personalization.SearchKeyWordCriterionElement">
-      <summary>
-            Configuration element for search key word criterion
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Personalization.SearchKeyWordCriterionElement.Pattern">
-      <summary>
-            Gets or sets the regular expression pattern for finding search words in referrer url.
-            </summary>
-      <value>The pattern.</value>
-    </member>
-    <member name="T:EPiServer.Configuration.Personalization.VisitorGroupElement">
-      <summary>
-            Configuration element for visitor groups
-            </summary>
-    </member>
-    <member name="P:EPiServer.Configuration.Personalization.VisitorGroupElement.SearchKeyWordCriteria">
-      <summary>
-            Gets or sets settings for the search key word criteria.
-            </summary>
-      <value>The search key word criteria.</value>
-    </member>
-    <member name="P:EPiServer.Configuration.TinyMCE.TinyMCEElement.MergedConfigurationProperties">
-      <summary>
-            Properties that will be mergable for plugins in tiny mce
             </summary>
     </member>
     <member name="T:EPiServer.Web.ConfigSourceReplacer">

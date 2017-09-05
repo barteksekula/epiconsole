@@ -1042,7 +1042,7 @@
     </member>
     <member name="P:EPiServer.Web.WebControls.Property.ContextBuilder">
       <summary>
-            Gets or sets the <see cref="T:EPiServer.Web.ControlRenderContextBuilder" /> that should be used by the current control instance.
+            Gets or sets the <see cref="T:EPiServer.Web.Internal.ControlRenderContextBuilder" /> that should be used by the current control instance.
             </summary>
     </member>
     <member name="M:EPiServer.Web.WebControls.Property.CreateChildControls">
@@ -1080,11 +1080,6 @@
     <member name="M:EPiServer.Web.WebControls.Property.IsContainedInTemplate">
       <summary>
             Checks if this property control is contained somewhere inside a templated control that fetches a <see cref="T:EPiServer.Core.PageData" />.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Web.WebControls.Property.PropertyValue">
-      <summary>
-            The value of the loaded property
             </summary>
     </member>
     <member name="M:EPiServer.Web.WebControls.Property.EnsurePropertyControlsCreated">
@@ -1168,21 +1163,6 @@
             you need to set the property <see cref="P:EPiServer.Web.WebControls.PageDataSource.EnableVisibleInMenu" /> to false.
             </remarks>
     </member>
-    <member name="P:EPiServer.Web.WebControls.SearchDataSource.SearchFiles">
-      <summary>
-            A flag to tell whether files should be included in the search or not.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Web.WebControls.SearchDataSource.SearchLocations">
-      <summary>
-            A comma separated string of file system locations used as starting locations when searching for files.
-            </summary>
-      <value>Default value in String.Empty</value>
-      <remarks>
-        <para>If empty, will search in all unified directories.</para>
-        <para>You can set more than one location by building a comma-separated list of paths.</para>
-      </remarks>
-    </member>
     <member name="P:EPiServer.Web.WebControls.SearchDataSource.MaxAllowHits">
       <summary>
             By default no more than 100 hits can be returned for performance reasons
@@ -1211,22 +1191,6 @@
     <member name="P:EPiServer.Web.WebControls.SearchDataSource.PageCriteriaSearchService">
       <summary>
             Gets or sets the <see cref="T:EPiServer.Core.IPageCriteriaQueryService" /> that is used internally in this instance.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Web.WebControls.SearchDataSource.OnlyWholeWords">
-      <summary>
-            A flag to control if the search will match only whole words.
-            If False, the search will match all words that begin with the words in the query (word* match).
-            </summary>
-    </member>
-    <member name="P:EPiServer.Web.WebControls.SearchDataSource.MainCatalog">
-      <summary>
-            The index server catalog to search in.
-            </summary>
-    </member>
-    <member name="P:EPiServer.Web.WebControls.SearchDataSource.MainScope">
-      <summary>
-            The scope parameter for index server searches. The default is deep traversal under the catalog root.
             </summary>
     </member>
     <member name="T:EPiServer.Web.WebControls.Translate">

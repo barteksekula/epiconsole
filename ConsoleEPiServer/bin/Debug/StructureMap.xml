@@ -3448,13 +3448,6 @@
             for anyone outside of Microsoft to be using...
             </remarks>
         </member>
-        <member name="M:StructureMap.Util.Cache`2.FillDefault(`0)">
-            <summary>
-              Guarantees that the Cache has the default value for a given key.
-              If it does not already exist, it's created.
-            </summary>
-            <param name = "key"></param>
-        </member>
         <member name="M:StructureMap.Util.LightweightCache`2.FillDefault(`0)">
             <summary>
                 Guarantees that the Cache has the default value for a given key.

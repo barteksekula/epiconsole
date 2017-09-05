@@ -15,7 +15,6 @@ D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Framework.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.ImageLibrary.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Licensing.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.LinkAnalyzer.dll
-D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Shell.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Web.WebControls.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.XForms.dll
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -37,7 +36,6 @@ D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Data.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Enterprise.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Events.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Framework.xml
-D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Shell.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.Web.WebControls.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\EPiServer.XForms.xml
 D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\Newtonsoft.Json.xml
@@ -118,3 +116,5 @@ D:\Projects\epi-console\epiconsole\ConsoleEPiServer\bin\Debug\System.Web.WebPage
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\bin\Debug\System.Web.WebPages.Razor.xml
 D:\Projects\epi-console\epiconsole\ConsoleEPiServer\obj\Debug\ConsoleEPiServer.csprojResolveAssemblyReference.cache
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\System.Threading.Tasks.Dataflow.dll
+D:\Projects\ConsoleEPiServer\ConsoleEPiServer\bin\Debug\System.Threading.Tasks.Dataflow.xml
