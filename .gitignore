@@ -188,6 +188,8 @@ $RECYCLE.BIN/
 # Visual Studio temp something
 .vs/
 
+.idea
+
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
