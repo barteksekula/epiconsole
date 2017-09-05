@@ -1,8 +1,8 @@
-#A tool to run tasks in EPiServer context
+# A tool to run tasks in EPiServer context
 
 ![RunningTasks](running_tasks.gif)
 
-#An example task:
+# An example task:
 ```cs
 public class SampleTask1
 {
